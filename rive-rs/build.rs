@@ -29,7 +29,7 @@ fn main() {
         .cpp(true)
         .include(rive_cpp_path.join("include"))
         .file("src/ffi.cpp")
-        .flag("-std=c++14")
+        .flag("/std:c++20")
         .warnings(false)
         .compile("rive-ffi");
 
@@ -39,7 +39,7 @@ fn main() {
 
         let mut cfg = cc::Build::new();
         cfg.cpp(true)
-            .flag_if_supported("-std=c++11") // for unix
+            .flag_if_supported("/std:c++20")
             .warnings(false)
             .file("../submodules/harfbuzz/src/harfbuzz.cc");
 
@@ -75,7 +75,7 @@ fn main() {
     cfg.cpp(true)
         .include(rive_cpp_path.join("include"))
         .files(all_files_with_extension(rive_cpp_path.join("src"), "cpp"))
-        .flag("-std=c++14")
+        .flag("/std:c++20")
         .warnings(false);
 
     if cfg!(feature = "text") {
